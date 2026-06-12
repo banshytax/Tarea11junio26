@@ -57,6 +57,18 @@ function renderizarResultado(idElement, texto) {
 const getRandomButton = document.querySelector("#getRandom")
 
 getRandomButton.addEventListener("click", () => {
-    const resultado = aleatorioDesdeArreglo(participantes)  
+
+    if (participantes.length === 0) {
+        renderizarResultado("resultado", "¡Todos participaron!")
+
+        setTimeout(() => {
+window.location.reload();
+}, 2000);
+
+        return
+    }
+    const resultado = aleatorioDesdeArreglo(participantes)
+    const indice = participantes.indexOf(resultado)
+    participantes.splice(indice, 1)
     renderizarResultado("resultado", resultado)
 })
